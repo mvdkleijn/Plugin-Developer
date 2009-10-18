@@ -1,18 +1,18 @@
-<h1><img src="<?php echo URL_PUBLIC; ?>frog/plugins/plugin_developer/images/settings.png" align="bottom"> Plugin Developer Settings</h1>
+<h1><img src="<?php echo URL_PUBLIC; ?>wolf/plugins/plugin_developer/images/settings.png" align="bottom"> Plugin Developer Settings</h1>
 
 
 <?php
 
-global $__FROG_CONN__;
+global $__CMS_CONN__;
 
 $licenses = "SELECT * FROM ".TABLE_PREFIX."plugin_developer_settings_licenses";
-$licenses = $__FROG_CONN__->prepare($licenses);
+$licenses = $__CMS_CONN__->prepare($licenses);
 $licenses->execute();
 
 
 echo '<h2>Licenses:</h2>';
 while($license = $licenses->fetchObject()) {
-	global $__FROG_CONN__;
+	global $__CMS_CONN__;
 	$license_id = $license->id;
 	$license_type = $license->license_type;
 ?>
@@ -31,16 +31,16 @@ while($license = $licenses->fetchObject()) {
 
 
 <?php
-global $__FROG_CONN__;
+global $__CMS_CONN__;
 
 $conditions = "SELECT * FROM ".TABLE_PREFIX."plugin_developer_settings_condition";
-$conditions = $__FROG_CONN__->prepare($conditions);
+$conditions = $__CMS_CONN__->prepare($conditions);
 $conditions->execute();
 
 
 echo '<h2>Development States:</h2>';
 while($condition = $conditions->fetchObject()) {
-	global $__FROG_CONN__;
+	global $__CMS_CONN__;
 	$id = $condition->id;
 	$condition = $condition->dev_condition;
 ?>

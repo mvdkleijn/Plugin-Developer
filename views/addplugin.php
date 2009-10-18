@@ -8,11 +8,11 @@ $authuser_email = AuthUser::getRecord()->email;
 
 // Set up some defaults:
 
-$frog_version = FROG_VERSION;
+$wolf_version = CMS_VERSION;
 
-$frog_required_version_1 = '0';
-$frog_required_version_2 = '9';
-$frog_required_version_3 = '5';
+$wolf_required_version_1 = '0';
+$wolf_required_version_2 = '0';
+$wolf_required_version_3 = '0';
 
 $plugin_version_1 = '0';
 $plugin_version_2 = '0';
@@ -29,7 +29,7 @@ $plugin_created_by = $authuser_id;
 // retrieve_plugin_details($id);
 
 ?>
-<h1><img src="<?php echo URL_PUBLIC; ?>frog/plugins/plugin_developer/images/addplugin.png" align="bottom"> Add a new Plugin</h1>
+<h1><img src="<?php echo URL_PUBLIC; ?>wolf/plugins/plugin_developer/images/addplugin.png" align="bottom"> Add a new Plugin</h1>
 
 <form action="<?php echo get_url('plugin/plugin_developer/addplugin_db/'); ?>" method="POST" name="addplugin">
 
@@ -60,21 +60,21 @@ $plugin_created_by = $authuser_id;
 <input class="version" maxlength="2" type="text" name="plugin_version_2" value="<?php echo $plugin_version_2; ?>"> . 
 <input class="version" maxlength="2" type="text" name="plugin_version_3" value="<?php echo $plugin_version_3; ?>"></p>
 
-<p><label>Require Frog Version :</label>
-<input class="version" maxlength="2" type="text" name="frog_required_1" value="<?php echo $frog_required_1; ?>"> . 
-<input class="version" maxlength="2" type="text" name="frog_required_2" value="<?php echo $frog_required_2; ?>"> . 
-<input class="version" maxlength="2" type="text" name="frog_required_3" value="<?php echo $frog_required_3; ?>"></p>
+<p><label>Require Wolf Version :</label>
+<input class="version" maxlength="2" type="text" name="wolf_required_1" value="<?php echo $wolf_required_1; ?>"> . 
+<input class="version" maxlength="2" type="text" name="wolf_required_2" value="<?php echo $wolf_required_2; ?>"> . 
+<input class="version" maxlength="2" type="text" name="wolf_required_3" value="<?php echo $wolf_required_3; ?>"></p>
 
 
 <p><label>License Type :</label>
 <select name="plugin_license">
 <?php
-global $__FROG_CONN__;
+global $__CMS_CONN__;
 $licenses = "SELECT * FROM ".TABLE_PREFIX."plugin_developer_settings_licenses";
-$licenses = $__FROG_CONN__->prepare($licenses);
+$licenses = $__CMS_CONN__->prepare($licenses);
 $licenses->execute();
 while($license = $licenses->fetchObject()) {
-	global $__FROG_CONN__;
+	global $__CMS_CONN__;
 	$id = $license->id;
 	$license = $license->license_type; ?>
 <option value="<?php echo $license ?>"><?php echo $license ?></option>
@@ -83,12 +83,12 @@ while($license = $licenses->fetchObject()) {
 <p><label>Plugin Condition :</label>
 <select name="plugin_condition">
 <?php
-global $__FROG_CONN__;
+global $__CMS_CONN__;
 $conditions = "SELECT * FROM ".TABLE_PREFIX."plugin_developer_settings_condition";
-$conditions = $__FROG_CONN__->prepare($conditions);
+$conditions = $__CMS_CONN__->prepare($conditions);
 $conditions->execute();
 while($condition = $conditions->fetchObject()) {
-	global $__FROG_CONN__;
+	global $__CMS_CONN__;
 	$id = $condition->id;
 	$condition = $condition->dev_condition; ?>
 <option value="<?php echo $condition ?>"><?php echo $condition ?></option>

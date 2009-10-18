@@ -1,10 +1,10 @@
 <?php
 
-global $__FROG_CONN__;
+global $__CMS_CONN__;
 
 
 $check_db = "SELECT * FROM ".TABLE_PREFIX."plugin_developer_plugins";
-$check_db = $__FROG_CONN__->prepare($check_db);
+$check_db = $__CMS_CONN__->prepare($check_db);
 $check_db->execute();
 $check_db = $check_db->rowCount();
 
@@ -23,9 +23,9 @@ $create_plugins = 'CREATE TABLE `'.TABLE_PREFIX.'plugin_developer_plugins` (
   `plugin_version_1` int(2) default NULL,
   `plugin_version_2` int(2) default NULL,
   `plugin_version_3` int(2) default NULL,
-  `frog_required_1` int(2) default NULL,
-  `frog_required_2` int(2) default NULL,
-  `frog_required_3` int(2) default NULL,
+  `wolf_required_1` int(2) default NULL,
+  `wolf_required_2` int(2) default NULL,
+  `wolf_required_3` int(2) default NULL,
   `plugin_license` varchar(50) default NULL,
   `plugin_date_created` varchar(10) default NULL,
   `plugin_date_updated` varchar(10) default NULL,
@@ -52,11 +52,11 @@ $create_plugin_licenses = 'CREATE TABLE `'.TABLE_PREFIX.'plugin_developer_settin
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;';
 
-$stmt = $__FROG_CONN__->prepare($create_plugins);
+$stmt = $__CMS_CONN__->prepare($create_plugins);
 $stmt->execute();
-$stmt = $__FROG_CONN__->prepare($create_plugin_conditions);
+$stmt = $__CMS_CONN__->prepare($create_plugin_conditions);
 $stmt->execute();
-$stmt = $__FROG_CONN__->prepare($create_plugin_licenses);
+$stmt = $__CMS_CONN__->prepare($create_plugin_licenses);
 $stmt->execute();
 
 
@@ -77,9 +77,9 @@ VALUES
 	(4,'MIT'),
 	(5,'GNU Affero GPL');";
 
-$stmt = $__FROG_CONN__->prepare($plugin_conditions_insert);
+$stmt = $__CMS_CONN__->prepare($plugin_conditions_insert);
 $stmt->execute();
-$stmt = $__FROG_CONN__->prepare($plugin_licenses_insert);
+$stmt = $__CMS_CONN__->prepare($plugin_licenses_insert);
 $stmt->execute();
 
 
@@ -91,7 +91,7 @@ $stmt->execute();
 
 
 
-<h1><img src="<?php echo URL_PUBLIC; ?>frog/plugins/plugin_developer/images/viewplugins.png" align="bottom"> Plugin Developer</h1>
+<h1><img src="<?php echo URL_PUBLIC; ?>wolf/plugins/plugin_developer/images/viewplugins.png" align="bottom"> Plugin Developer</h1>
 <p>Plugin Developer will help you keep track of your developed plugins and can automatically update the XML file you use to let users know about updates. You can also use the content here to display information on your site.</p>
 
 <table class="index" cellpadding="0" cellspacing="0" border="0">
@@ -107,13 +107,13 @@ $stmt->execute();
   </thead>
   <tbody>
 <?php
-	global $__FROG_CONN__;
+	global $__CMS_CONN__;
 	$sql = "SELECT * FROM ".TABLE_PREFIX."plugin_developer_plugins ORDER BY plugin_name";
-	$sql = $__FROG_CONN__->prepare($sql);
+	$sql = $__CMS_CONN__->prepare($sql);
 	$sql->execute();
 
 	echo '<?xml version="1.0" encoding="iso-8859-1"?>
-<frog-plugins>';
+<wolf-plugins>';
 
 	while($plugin_details = $sql->fetchObject()){
 		$id = $plugin_details->id;
@@ -126,9 +126,9 @@ $stmt->execute();
 		$plugin_version_1 = $plugin_details->plugin_version_1;
 		$plugin_version_2 = $plugin_details->plugin_version_2;
 		$plugin_version_3 = $plugin_details->plugin_version_3;
-		$frog_required_1 = $plugin_details->frog_required_1;
-		$frog_required_2 = $plugin_details->frog_required_2;
-		$frog_required_3 = $plugin_details->frog_required_3;
+		$wolf_required_1 = $plugin_details->wolf_required_1;
+		$wolf_required_2 = $plugin_details->wolf_required_2;
+		$wolf_required_3 = $plugin_details->wolf_required_3;
 		$plugin_license = $plugin_details->plugin_license;
 		$plugin_date_created = $plugin_details->plugin_date_created;
 		$plugin_date_updated = $plugin_details->plugin_date_updated;
@@ -141,12 +141,12 @@ $stmt->execute();
 ?>
 
 <tr class="node <?php echo odd_even(); ?>">
-	<td><p><img src="<?php echo URL_PUBLIC; ?>frog/plugins/plugin_developer/images/plugin.png" align="middle" alt="user icon" /> <a href="<?php echo get_url('plugin/plugin_developer/editplugin/'.$id); ?>"><?php echo $plugin_name ?> (<?php echo $plugin_downloads ?>)</a></p></td>
+	<td><p><img src="<?php echo URL_PUBLIC; ?>wolf/plugins/plugin_developer/images/plugin.png" align="middle" alt="user icon" /> <a href="<?php echo get_url('plugin/plugin_developer/editplugin/'.$id); ?>"><?php echo $plugin_name ?></a></p></td>
 	<td><small><?php echo $plugin_id ?></small></td>
 	<td><small><?php echo $plugin_version_1 ?>.<?php echo $plugin_version_2 ?>.<?php echo $plugin_version_3 ?> <?php echo $plugin_condition ?> (<?php echo $plugin_license ?>)</small></td>
 	<td><small><?php echo $plugin_date_created ?> by <?php echo $plugin_author ?></small></td>
 	<td><small><?php if ($plugin_status == '0') { echo 'Not Released'; } else { echo 'Published'; } ?></small></td>
-	<td><p><a href="<?php echo get_url('plugin/plugin_developer/deleteplugin_db/'.$id); ?>" onclick="return confirm('Would you like to delete your <?php echo $plugin_name ?> plugin?');"><img src="<?php echo URL_PUBLIC; ?>frog/plugins/plugin_developer/images/delete.png" align="middle" alt="user icon" /></a></p></td>
+	<td><p><a href="<?php echo get_url('plugin/plugin_developer/deleteplugin_db/'.$id); ?>" onclick="return confirm('Would you like to delete your <?php echo $plugin_name ?> plugin?');"><img src="<?php echo URL_PUBLIC; ?>wolf/plugins/plugin_developer/images/delete.png" align="middle" alt="user icon" /></a></p></td>
 </tr>
 
 <?php

@@ -1,17 +1,17 @@
-<h1><img src="<?php echo URL_PUBLIC; ?>frog/plugins/plugin_developer/images/documentation.png" align="bottom"> Plugin Developer Documentation</h1>
-<p>This is a plugin for Frog Plugin Developers who would like to have a quick interface for generating the XML file that allows Frog to check for the latest update to your plugin wherever it is installed.</p>
-<p>Frog allows developers have the additional field in the plugin settings array:</p>
+<h1><img src="<?php echo URL_PUBLIC; ?>wolf/plugins/plugin_developer/images/documentation.png" align="bottom"> Plugin Developer Documentation</h1>
+<p>This is a plugin for Wolf Plugin Developers who would like to have a quick interface for generating the XML file that allows Wolf to check for the latest update to your plugin wherever it is installed.</p>
+<p>Wolf allows developers have the additional field in the plugin settings array:</p>
 <pre>'update_url'  => 'http://path/to/your/updates.xml'</pre>
 <p>That XML file contains the following data:</p>
 <pre>
 &lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
-&lt;frog-plugins&gt;
-    &lt;frog-plugin&gt;
+&lt;wolf-plugins&gt;
+    &lt;wolf-plugin&gt;
         &lt;id&gt;pluginid&lt;/id&gt;
         &lt;version&gt;1.0.0&lt;/version&gt;
         &lt;status&gt;stable&lt;/status&gt;
-    &lt;/frog-plugin&gt;
-&lt;/frog-plugins&gt;
+    &lt;/wolf-plugin&gt;
+&lt;/wolf-plugins&gt;
 </pre>
 <p>To create the XML file dynamically, simply create a new layout (say, "<strong>XML Update</strong>", type: "<strong>text/xml</strong>"). Add this to the layout body:
 <pre>&lt;?php echo $this->content(); ?&gt;</pre>
