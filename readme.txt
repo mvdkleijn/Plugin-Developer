@@ -1,3 +1,6 @@
+**Status:** No longer active / archived
+
+
 Plugin Developer for Wolf CMS
 by Andrew Waters
 andrew@band-x.org
